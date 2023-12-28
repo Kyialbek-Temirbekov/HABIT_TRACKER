@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.pr.habittracker.model.enums.Frequency;
 import dev.pr.habittracker.model.enums.TimeOfDay;
+import dev.pr.habittracker.validation.constraint.ValidTerm;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
@@ -33,13 +34,8 @@ public class HabitDto {
     @NotEmpty()
     private List<TimeOfDay> goal;
     @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-    @NotNull()
-    @FutureOrPresent()
-    private LocalDate startDate;
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-    @NotNull()
-    @Future()
-    private LocalDate endDate;
+    @ValidTerm
+    private TermDto termDto;
     @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     @NotNull()
     private Frequency frequency;

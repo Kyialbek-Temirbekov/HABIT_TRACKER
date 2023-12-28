@@ -81,7 +81,7 @@ public class HabitService {
         tracker.setCompletedDays(tracker.getCompletedDays()+1);
         habit.getReminder().setMarked(true);
 
-        if(reminderService.getNextTargetDate(habit).isAfter(habit.getEndDate())) {
+        if(reminderService.getNextTargetDate(habit).isAfter(habit.getTerm().getEndDate())) {
             tracker.setFinished(true);
             achievementService.create(tracker);
         }

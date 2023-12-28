@@ -1,10 +1,7 @@
 package dev.pr.habittracker.exception;
 
 import dev.pr.habittracker.dto.MessageDto;
-import dev.pr.habittracker.util.EmailValidator;
-import dev.pr.habittracker.util.TermValidator;
 import jakarta.validation.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -21,16 +18,9 @@ import java.util.List;
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    @Autowired
-    private EmailValidator emailValidator;
-    @Autowired
-    private TermValidator termValidator;
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         BindingResult bindingResult = ex.getBindingResult();
-        Object target = bindingResult.getTarget();
-        emailValidator.validate(target,bindingResult);
-        termValidator.validate(target,bindingResult);
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageDto(
                 getErrors(bindingResult)

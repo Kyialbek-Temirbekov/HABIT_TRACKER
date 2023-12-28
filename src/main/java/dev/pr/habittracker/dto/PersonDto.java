@@ -3,6 +3,7 @@ package dev.pr.habittracker.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.pr.habittracker.validation.constraint.UniqueEmail;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
@@ -24,6 +25,7 @@ public class PersonDto {
     @NotBlank
     @Email
     @Size(max = 255)
+    @UniqueEmail
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Size(min = 8, max = 255, message = "must contain more than 8 and less then 255 characters")

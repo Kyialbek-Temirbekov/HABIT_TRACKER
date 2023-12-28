@@ -29,10 +29,8 @@ public class Habit {
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = TimeOfDay.class, fetch = FetchType.EAGER)
     private List<TimeOfDay> goal;
-    @Column(nullable = false)
-    private LocalDate startDate;
-    @Column(nullable = false)
-    private LocalDate endDate;
+    @Embedded
+    private Term term;
     @Column(nullable = false, name = "habit_frequency")
     @Enumerated(EnumType.STRING)
     private Frequency frequency;

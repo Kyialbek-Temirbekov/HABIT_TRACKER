@@ -1,11 +1,9 @@
 package dev.pr.habittracker.controller;
 
 import dev.pr.habittracker.dto.*;
-import dev.pr.habittracker.exception.NotCreatedException;
 import dev.pr.habittracker.model.Person;
 import dev.pr.habittracker.model.enums.Role;
 import dev.pr.habittracker.service.PeopleService;
-import dev.pr.habittracker.util.EmailValidator;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -15,7 +13,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

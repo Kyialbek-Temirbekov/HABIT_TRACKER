@@ -2,16 +2,13 @@ package dev.pr.habittracker.controller;
 
 import dev.pr.habittracker.dto.HabitDto;
 import dev.pr.habittracker.dto.MessageDto;
-import dev.pr.habittracker.exception.NotCreatedException;
 import dev.pr.habittracker.model.Habit;
 import dev.pr.habittracker.service.HabitService;
-import dev.pr.habittracker.util.TermValidator;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

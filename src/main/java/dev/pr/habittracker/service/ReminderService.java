@@ -29,24 +29,24 @@ public class ReminderService {
     }
 
     private LocalDate getFirstTargetDate(Habit habit) {
-        LocalDate targetDate = habit.getStartDate();
+        LocalDate targetDate = habit.getTerm().getStartDate();
         switch (habit.getFrequency()) {
             case DAILY -> {
                 return targetDate;
             }
             case WEEKLY -> {
-                targetDate = habit.getStartDate().with(DayOfWeek.of(habit.getDay())).isBefore(habit.getStartDate()) ?
-                        habit.getStartDate().plusWeeks(1).with(DayOfWeek.of(habit.getDay())) :
-                        habit.getStartDate().with(DayOfWeek.of(habit.getDay()));
-                if(targetDate.isAfter(habit.getEndDate()))
+                targetDate = habit.getTerm().getStartDate().with(DayOfWeek.of(habit.getDay())).isBefore(habit.getTerm().getStartDate()) ?
+                        habit.getTerm().getStartDate().plusWeeks(1).with(DayOfWeek.of(habit.getDay())) :
+                        habit.getTerm().getStartDate().with(DayOfWeek.of(habit.getDay()));
+                if(targetDate.isAfter(habit.getTerm().getEndDate()))
                     return null;
                 return targetDate;
             }
             case MONTHLY -> {
-                targetDate = habit.getStartDate().withDayOfMonth(habit.getDay()).isBefore(habit.getStartDate()) ?
-                        habit.getStartDate().plusMonths(1).withDayOfMonth(habit.getDay()) :
-                        habit.getStartDate().withDayOfMonth(habit.getDay());
-                if(targetDate.isAfter(habit.getEndDate()))
+                targetDate = habit.getTerm().getStartDate().withDayOfMonth(habit.getDay()).isBefore(habit.getTerm().getStartDate()) ?
+                        habit.getTerm().getStartDate().plusMonths(1).withDayOfMonth(habit.getDay()) :
+                        habit.getTerm().getStartDate().withDayOfMonth(habit.getDay());
+                if(targetDate.isAfter(habit.getTerm().getEndDate()))
                     return null;
                 return targetDate;
             }
